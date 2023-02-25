@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<title>Currículo Matheus Castanho Pacheco</title>
+</head>
+<body>
+	<img id="imgFundo" src="img/formacao.jpg" class="img-fundo">
+	<div class="btn-contato-fundo">
+		<a target="_blank" href="mailto:matheus_pacheco10@hotmail.com"></a>
+		<a target="_blank" href="https://api.whatsapp.com/send?phone=5511945134783"></a>
+		<a target="_blank" href="https://linkedin.com/in/matheus-pacheco10/"></a>
+	</div>
+	<div class="btn-menu-fundo">
+		<div class="btn-menu btn-menu-formacao" onclick="trocarImgFundo('formacao')"></div>
+		<div class="btn-menu" onclick="trocarImgFundo('habilidades')"></div>
+		<div class="btn-menu" onclick="trocarImgFundo('experiencias1')"></div>
+	</div>
+	<div class="btn-experiencias btn-anterior" onclick="trocarImgExperiencias('ant')"></div>
+	<div class="btn-experiencias btn-proximo" onclick="trocarImgExperiencias('prox')"></div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		var __fundoAtual = "formacao";
+		
+		function trocarImgFundo(_imagem){
+			__fundoAtual = _imagem;
+			$( "#imgFundo" ).attr("src", "img/" + __fundoAtual + ".jpg");
+			if (__fundoAtual == "experiencias1") {
+				$( ".btn-anterior" ).css('display', 'none');
+				$( ".btn-proximo" ).css('display', 'block');
+			}else if (__fundoAtual == "experiencias2") {
+				$( ".btn-experiencias" ).css('display', 'block');
+			}else if (__fundoAtual == "experiencias3") {
+				$( ".btn-anterior" ).css('display', 'block');
+				$( ".btn-proximo" ).css('display', 'none');
+			}else{
+				$( ".btn-experiencias" ).css('display', 'none');
+			}
+		}
+
+		function trocarImgExperiencias(_op){
+			if (_op == "prox" && __fundoAtual == "experiencias1" || _op == "ant" && __fundoAtual == "experiencias3"){
+				trocarImgFundo('experiencias2');
+			}else if(_op == "prox" && __fundoAtual == "experiencias2"){
+				trocarImgFundo('experiencias3');
+			}else if(_op == "ant" && __fundoAtual == "experiencias2"){
+				trocarImgFundo('experiencias1');
+			}
+		}
+
+	</script>
+</body>
+</html>
